@@ -18,7 +18,7 @@ int majorityElement(vector<int>& arr) {
             }
         }
 
-        // Step 2: Verify candidate
+        // Step 2: Verify candidate (if arr not necessarily contains a majority element)
         count = 0;
         for(int i = 0; i < arr.size(); i++){
             if(arr[i] == candidate){
