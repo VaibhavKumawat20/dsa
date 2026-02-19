@@ -75,6 +75,30 @@ class List{
         tail = temp;        
     }
 
+    void insert(int val, int pos){
+        if(pos < 0){
+            cout << "invalid position" << endl;
+            return;
+        }
+        if(pos == 0){
+            push_front(val);
+            return;
+        }
+
+        Node* temp = head;
+        for(int i=0; i<pos-1; i++){
+            if(temp == NULL){
+                cout << "invalid position\n";
+                return;
+            }
+            temp = temp->next;
+        }
+
+        Node* newNode = new Node(val);
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+
     void printLL(){
         Node* temp = head;
 
@@ -83,6 +107,21 @@ class List{
             temp = temp->next;
         }
         cout << "NULL" << endl;
+    }
+
+    int search(int key){
+        Node* temp = head;
+        int idx  = 0;
+
+        while(temp != NULL){
+            if(temp->data == key){
+                return idx;
+            }
+
+            temp = temp->next;
+            idx++;
+        }
+        return -1;
     }
 };
 
@@ -99,7 +138,11 @@ int main(){
 
     ll.pop_back();
 
+    ll.insert(3, 1);
+
     ll.printLL();
+
+    cout << ll.search(1) << endl;
 
     return 0;
 }
