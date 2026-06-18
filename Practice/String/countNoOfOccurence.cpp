@@ -14,7 +14,6 @@ int main(){
 
     int count = 0;
 
-
     while(s.find(t) != -1){
         count++;
         s[s.find(t)] = '$';
