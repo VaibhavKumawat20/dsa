@@ -1,0 +1,43 @@
+
+#include <iostream>
+#include <stack>
+#include <utility>
+#include <vector>
+using namespace std;
+
+class StockSpanner {
+public:
+    stack<pair<int, int>> st;
+
+    StockSpanner() {
+    }
+
+    int next(int price) {
+        int span = 1;
+
+        while (!st.empty() && st.top().first <= price) {
+            span += st.top().second;
+            st.pop();
+        }
+
+        st.push({price, span});
+        return span;
+    }
+};
+
+int main() {
+    StockSpanner* obj = new StockSpanner();
+
+    vector<int> prices = {100, 80, 60, 70, 60, 75, 85};
+
+    cout << "Stock spans: ";
+
+    for (int price : prices) {
+        cout << obj->next(price) << " ";
+    }
+
+    cout << endl;
+
+    delete obj;
+    return 0;
+}
